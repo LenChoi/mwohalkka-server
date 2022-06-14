@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<script th:fragment="init">
+    $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green'
+    });
+
+    $('.input-group.date').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true
+    });
+
+    $("[required='true']").each(function() {
+        $(this).html("<i class='fa fa-star' style='color: #FFC107;'></i> " + $(this).html());
+    });
+    $("textarea.form-control").each(function(k,v){
+        ClassicEditor
+            .create( v )
+            .catch( error => {
+                console.error( error );
+            } );
+    });
+
+    $(function() {
+        $("select.multiple").multiSelect()
+    });
+
+    $(".btn-spinner").each(function(k,v){
+        if($(v).data('loading-text') == undefined){
+            $(v).data('loading-text', '<i class=\'fa fa-circle-o-notch fa-spin\'></i>')
+        }
+    })
+
+    $(".btn-spinner").click(function(){
+        $(this).addClass('spinning').button('loading');
+    })
+
+    $(document).ajaxComplete(function(){
+        $(".btn-spinner.spinning").removeClass('spinning').button('reset');
+    });
+</script>
+
+<script th:fragment="addbuttons">
+    $("#save-btn").click(function() {
+        $("#f1").submit();
+    });
+
+    $("#cancel-btn").click(function() {
+        window.close();
+    });
+</script>
+
+<script th:fragment="editbuttons">
+    $("#save-btn").click(function() {
+        $("#f1").submit();
+    });
+
+    $("#cancel-btn").click(function() {
+        window.close();
+    });
+
+    $("#delete-btn").click(function() {
+        if (confirm("정말로 삭제하시겠습니까?")) window.location = "delete";
+    });
+</script>
+
+</html>

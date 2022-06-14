@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <!--<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coin | Login</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">-->
+    <th:block th:replace="~{_head :: head}"/>
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">Mwohalkka</h1>
+
+            </div>
+            <h3>Welcome to Mwohalkka Admin</h3>
+            <p></p>
+            <p>Login</p>
+            <p>
+                <div class="error" th:if="${param.error}">
+                    Invalid username and password.
+                </div>
+                <div class="error" th:if="${param.logout}">
+                    You have been logged out.
+                </div>
+            </p>
+            <form id="login-form" class="m-t" role="form" th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Admin ID" required="" name="username">
+                </div>
+                <div class="form-group">
+                    <input id="password" type="password" class="form-control" placeholder="Password" required="" name="password">
+                </div>
+                <div class="form-group" th:if="${@environment.getActiveProfiles().length > 0 && @environment.getActiveProfiles()[0] != 'local'}">
+                    <input id="otp" type="text" class="form-control" placeholder="OTP" required="" name="otp">
+                </div>
+                <button id="login-btn" type="button" class="btn btn-primary block full-width m-b">Login</button>
+
+                <!--<a href="#"><small>Forgot password?</small></a>
+                <p class="text-muted text-center"><small>Do not have an account?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>-->
+            </form>
+            <!--<p class="m-t"> <small>Betalabs &copy; 2021</small> </p>-->
+        </div>
+    </div>
+
+    <th:block th:replace="~{_footer :: footer}"/>
+
+<script>
+    $(function() {
+        const submit = () => {
+            const password = $("#password").val();
+            const otp = $("#otp").val();
+            $("#password").val(password + "|" + otp);
+            $("#login-form").submit();
+        }
+
+        $("#login-btn").click(submit);
+
+        $("#login-form").keypress(function(e) {
+            if (e.keyCode === 13){
+                submit();
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>

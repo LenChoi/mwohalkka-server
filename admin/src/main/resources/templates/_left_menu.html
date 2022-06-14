@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+<nav th:fragment="left-menu" class="navbar-default navbar-static-side" role="navigation">
+
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                </div>
+                <div class="logo-element">
+                    Mwohalkka
+                </div>
+            </li>
+
+            <!-- Admin -->
+            <li sec:authorize="hasRole('ROLE_SUPER')">
+                <a href="#n"><i class="fa fa-hand-stop-o"></i> <span class="nav-label">Admin</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/admin"><i class="fa fa-hand-stop-o"></i>Admin 관리</a></li>
+                </ul>
+            </li>
+            <!-- Stat -->
+            <li sec:authorize="hasAnyRole('ROLE_SUPER', 'STAT_MANAGE', 'STAT_VIEW')">
+                <a href="#n"><i class="fa fa-hand-stop-o"></i> <span class="nav-label">Stat</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/purchasestat"><i class="fa fa-hand-stop-o"></i>PurchaseStat 관리</a></li>
+                    <li><a href="/walletstat"><i class="fa fa-hand-stop-o"></i>WalletStat 관리</a></li>
+                    <li><a href="/wallettxstat"><i class="fa fa-hand-stop-o"></i>WalletTxStat 관리</a></li>
+                    <li><a href="/cardstat"><i class="fa fa-hand-stop-o"></i>CardStat 관리</a></li>
+                    <li><a href="/rebuildingstat"><i class="fa fa-hand-stop-o"></i>RebuildingStat 관리</a></li>
+                </ul>
+            </li>
+            <!-- FAQ -->
+            <li sec:authorize="hasAnyRole('ROLE_SUPER', 'FAQ_MANAGE', 'FAQ_VIEW')">
+                <a href="#n"><i class="fa fa-question-circle-o"></i> <span class="nav-label">FAQ</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/faq"><i class="fa fa-question-circle-o"></i>FAQ 관리</a></li>
+                </ul>
+            </li>
+            <!-- Reward -->
+            <li sec:authorize="hasAnyRole('ROLE_SUPER', 'REWARD_MANAGE', 'REWARD_VIEW')">
+                <a href="#n"><i class="fa fa-question-circle-o"></i> <span class="nav-label">Reward</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/reward"><i class="fa fa-question-circle-o"></i>Reward 관리</a></li>
+                </ul>
+            </li>
+            <!-- Staking -->
+            <li sec:authorize="hasAnyRole('ROLE_SUPER', 'STAKING_MANAGE', 'STAKING_VIEW')">
+                <a href="#n"><i class="fa fa-money"></i> <span class="nav-label">Staking</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/staking"><i class="fa fa-money"></i>Staking 관리</a></li>
+                    <li><a href="/stakinginfo"><i class="fa fa-money"></i>StakingInfo 관리</a></li>
+                    <li><a href="/stakingrecord"><i class="fa fa-money"></i>StakingRecord 관리</a></li>
+                </ul>
+            </li>
+            <!-- Card -->
+            <li sec:authorize="hasAnyRole('ROLE_SUPER', 'CARD_MANAGE', 'CARD_VIEW')">
+                <a href="#n"><i class="fa fa-hand-stop-o"></i> <span class="nav-label">Card</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/card"><i class="fa fa-hand-stop-o"></i>Card 관리</a></li>
+                    <li><a href="/card-metadata-info"><i class="fa fa-hand-stop-o"></i>CardMetadataInfo 관리</a></li>
+                </ul>
+            </li>
+            <!-- ItemCard -->
+            <li sec:authorize="hasAnyRole('ROLE_SUPER', 'ITEM_CARD_MANAGE', 'ITEM_CARD_VIEW')">
+                <a href="#n"><i class="fa fa-hand-stop-o"></i> <span class="nav-label">ItemCard</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/item-card"><i class="fa fa-hand-stop-o"></i>ItemCard 관리</a></li>
+                </ul>
+            </li>
+            <!-- Rebuilding -->
+            <li sec:authorize="hasAnyRole('ROLE_SUPER', 'REBUILDING_MANAGE', 'REBUILDING_VIEW')">
+                <a href="#n"><i class="fa fa-hand-stop-o"></i> <span class="nav-label">Rebuilding</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/rebuilding"><i class="fa fa-hand-stop-o"></i>Rebuilding 관리</a></li>
+                </ul>
+            </li>
+            <!-- Region -->
+            <li sec:authorize="hasAnyRole('ROLE_SUPER', 'REGION_MANAGE', 'REGION_VIEW')">
+                <a href="#n"><i class="fa fa-hand-stop-o"></i> <span class="nav-label">Region</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/region"><i class="fa fa-hand-stop-o"></i>Region 관리</a></li>
+                </ul>
+            </li>
+            <!-- Wallet -->
+            <li sec:authorize="hasAnyRole('ROLE_SUPER', 'WALLET_MANAGE', 'WALLET_VIEW', 'PURCHASE_MANAGE', 'PURCHASE_VIEW')">
+                <a href="#n"><i class="fa fa-hand-stop-o"></i> <span class="nav-label">Wallet</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li sec:authorize="hasAnyRole('ROLE_SUPER', 'WALLET_MANAGE', 'WALLET_VIEW')">
+                        <a href="/wallet"><i class="fa fa-hand-stop-o"></i>Wallet 관리</a>
+                    </li>
+                    <li sec:authorize="hasAnyRole('ROLE_SUPER', 'WALLET_MANAGE', 'WALLET_VIEW')">
+                        <a href="/wallettx"><i class="fa fa-hand-stop-o"></i>WalletTx 관리</a>
+                    </li>
+                    <li sec:authorize="hasAnyRole('ROLE_SUPER', 'PURCHASE_MANAGE', 'PURCHASE_VIEW')">
+                        <a href="/purchase"><i class="fa fa-hand-stop-o"></i>Purchase 관리</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Pack -->
+            <li sec:authorize="hasAnyRole('ROLE_SUPER', 'PACKINFO_MANAGE', 'PACKINFO_VIEW', 'PACK_MANAGE', 'PACK_VIEW', 'PACK_ITEM_CARD_MANAGE', 'PACK_ITEM_CARD_VIEW')">
+                <a href="#n"><i class="fa fa-hand-stop-o"></i> <span class="nav-label">Pack</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li sec:authorize="hasAnyRole('ROLE_SUPER', 'PACKINFO_MANAGE', 'PACKINFO_VIEW')">
+                        <a href="/pack-info">
+                    <i class="fa fa-hand-stop-o"></i>PackInfo 관리</a></li>
+                </ul>
+                <ul class="nav nav-second-level">
+                    <li sec:authorize="hasAnyRole('ROLE_SUPER', 'PACK_MANAGE', 'PACK_VIEW')">
+                        <a href="/pack"><i class="fa fa-hand-stop-o"></i>PackNftCard 관리</a>
+                    </li>
+                </ul>
+                <ul class="nav nav-second-level">
+                    <li sec:authorize="hasAnyRole('ROLE_SUPER', 'PACK_ITEM_CARD_MANAGE', 'PACK_ITEM_CARD_VIEW')">
+                        <a href="/pack-item-card"><i class="fa fa-hand-stop-o"></i>PackItemCard 관리</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- CardImage -->
+            <li sec:authorize="hasAnyRole('ROLE_SUPER', 'CARD_IMAGE_MANAGE', 'CARD_IMAGE_VIEW')">
+                <a href="#n"><i class="fa fa-hand-stop-o"></i> <span class="nav-label">CardImageInfo</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/card-image-info"><i class="fa fa-hand-stop-o"></i>CardImageInfo 관리</a></li>
+                </ul>
+            </li>
+            <!-- Coin Price -->
+            <li sec:authorize="hasAnyRole('ROLE_SUPER', 'COIN_PRICE_VIEW', 'COIN_PRICE_MANAGE')">
+                <a href="#n"><i class="fa fa-percent"></i> <span class="nav-label">CoinPrice</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/coinprice"><i class="fa fa-percent"></i>CoinPrice</a></li>
+                    <li><a href="/coinpricehistory"><i class="fa fa-history"></i>CoinPriceHistory</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+</body>
+</html>

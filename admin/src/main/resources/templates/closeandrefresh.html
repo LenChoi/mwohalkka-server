@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	<script>
+		$(function() {
+            var msg = [[${msg}]];
+            var customMsg = "[[${customMsg}]]";
+            if (msg > 0) {
+                switch (msg) {
+                    case 1:
+                        alert("Saved");
+                        break;
+                    case 2:
+                        alert("Updated");
+                        break;
+                    case 3:
+                        alert("Deleted");
+                        break;
+                    case 9:
+                        alert(customMsg);
+                        break;
+                }
+            }
+            window.opener.reloadGrid();
+            window.close();
+		})
+	</script>
+</body>
+</html>

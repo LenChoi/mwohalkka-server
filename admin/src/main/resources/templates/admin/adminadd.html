@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="~{_head :: head}" />
+</head>
+
+<body class="gray-bg">
+<div id="wrapper">
+    <div id="form-page-wrapper" class="gray-bg">
+        <!-- title -->
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-12">
+                <h2>Admin 추가</h2>
+            </div>
+        </div>
+
+        <!-- form content -->
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-sm-12 m-b-xs">
+                    <div class="pull-right">
+                        <button id="save-btn" type="button" class="btn w90 btn-success m-r-xs"><i class="fa fa-save"></i>&nbsp;&nbsp; Save</button>
+                        <button id="cancel-btn" type="button" class="btn w90 btn-white"><i class="fa fa-times"></i>&nbsp;&nbsp; Close</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORM -->
+            <form id="f1" th:object="${admin}" role="form" method="post">
+                <!-- new box -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                <h5>기본정보
+                                    <small></small>
+                                </h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label required="true">이름</label>
+                                        <input th:id="name" type="text" class="form-control" th:field="*{name}" />
+                                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label required="true">로그인 아이디</label>
+                                        <input th:id="loginId" type="text" class="form-control" th:field="*{loginId}" />
+                                        <span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}" class="error"></span>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label required="true">비밀번호</label>
+                                        <input th:id="password" type="password" class="form-control" th:field="*{password}" />
+                                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label required="true">휴대폰 번호</label>
+                                        <input th:id="phone" type="text" class="form-control" th:field="*{phone}" />
+                                        <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="error"></span>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label required="true">슬랙 아이디</label>
+                                        <input th:id="slackId" type="text" class="form-control" th:field="*{slackId}" />
+                                        <span th:if="${#fields.hasErrors('slackId')}" th:errors="*{slackId}" class="error"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label required="true">권한</label>
+                                        <select th:id="roles" th:field="*{roles}" multiple="true"
+                                                class="form-control" style="height: 300px">
+                                            <option th:each="r : ${adminRoles}" th:text="${r.descr}" th:value="${r}" />
+                                        </select>
+                                    </div> <!-- /ibox-content -->
+                                </div>
+                            </div> <!-- /ibox-content -->
+                        </div> <!-- /ibox -->
+                    </div> <!-- /col-sm-12 -->
+                </div> <!-- /row(form) -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<th:block th:replace="~{_footer :: footer}" />
+<th:block th:replace="~{_form :: init}" />
+<th:block th:replace="~{_form :: addbuttons}" />
+
+<script>
+        $(function() {
+            $("select.multiple").multiSelect()
+        });
+</script>
+
+</body>
+</html>
